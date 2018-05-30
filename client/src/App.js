@@ -17,8 +17,8 @@ class App extends Component {
         </header>
 
           <Route exact path='/testimonials' render={() => (<Testimonials/>)}/>
-          <Route exact path='/Testimonials/TestimonialForm' render={() =>(<TestimonialForm onSubmit={this.handleSubmit}/>)}/>
-          <Route exact path='/Docinfo'render={() => (<DocInfoTable/>)}/>
+          <Route exact path='/testimonials/form' render={() =>(<TestimonialForm onSubmit={this.handleSubmit}/>)}/>
+          <Route exact path='/docinfo'render={() => (<DocInfoTable/>)}/>
       </div>
     </Router>
     )
