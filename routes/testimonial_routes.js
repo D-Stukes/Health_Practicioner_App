@@ -3,7 +3,7 @@ const testimonialRoute = require('express').Router();
 const testimonial_controller = require('../controllers/testimonial_controller');
 const response_controller = require('../controllers/response_controller');
 
-testimonialRoute.route('/testimonials')
+testimonialRoute.route('/')
   .get(
     testimonial_controller.getAllTestimonials,
     response_controller.sendOkResponse,

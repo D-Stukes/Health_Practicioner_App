@@ -13,11 +13,12 @@ class Testimonials extends Component {
     patient_fname: '',
     patient_lname:'',
     testimonial:'',
-    service_date:'',
-    doc_id: ''
+    service_date:''
   }
 
 }
+
+// tRow ==TableRow.map();
 
   render(){
     return(
@@ -44,7 +45,6 @@ class Testimonials extends Component {
           <TableRowColumn> ${this.props.patient_lname}</TableRowColumn>
           <TableRowColumn> ${this.props.testimonial}</TableRowColumn>
           <TableRowColumn> ${this.props.service_date}</TableRowColumn>
-          <TableRowColumn> ${this.props.doc_id}</TableRowColumn>
         </TableRow>
       </TableBody>
     </Table>

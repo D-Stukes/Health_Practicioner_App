@@ -6,7 +6,61 @@ import Testimonials from './components/Testimonials'
 import TestimonialForm from './components/TestimonialForm.jsx';
 import DocInfoTable from './components/DocInfoTable.jsx';
 
+
 class App extends Component {
+constructor(props) {
+super(props);
+this.state = {
+  patient_fname: '',
+  patient_lname:'',
+  testimonial:'',
+  service_date:'',
+  doc_fname: '',
+  doc_lname:'',
+  specialty:'',
+  insurance:'',
+  affiliations: '',
+  board_certs:''
+}
+}
+
+fetchTestimonials(){
+    fetch('/testimonials')
+      .then(resp => {
+        // if (!resp.ok) throw new Error(resp.statusMessage);
+        return resp.json();
+      })
+      .then(resBody => {
+        this.setState({
+          testimonial: resBody.data
+        })
+      });
+  }
+
+  componentDidMount() {
+    this.fetchTestimonials();
+  }
+
+
+
+// fetchDocinfo () {
+//     fetch('/docinfo')
+//       .then(resp => {
+//         if (!resp.ok) throw new Error(resp.statusMessage);
+//         return resp.json();
+//       })
+//       .then(resBody => {
+//         this.setState({
+//           docinfo: resBody.data
+//         })
+//       });
+//   }
+
+  // componentDidMount() {
+  //   this.fetchDocinfo();
+  // }
+
+
   render() {
     return (
       <Router>

@@ -19,9 +19,10 @@ if (process.env.NODE_ENV === 'production') {
     }
 
 // app.get('/', docinfoRoute);
-app.get('/api/testimonials', testimonialRoute);
+app.use('/testimonials', testimonialRoute);
 // app.use('/docinfoRoute/', docinfoRoute);
 
+// app.get('/docinfo', docinfoRoute);
 
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));
