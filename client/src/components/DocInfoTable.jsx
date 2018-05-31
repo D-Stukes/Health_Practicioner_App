@@ -3,6 +3,7 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {Table, TableBody,
 TableHeader, TableHeaderColumn,
 TableRow, TableRowColumn} from 'material-ui/Table'
+import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 class DocInfoTable extends Component {
   constructor(props) {
@@ -23,35 +24,37 @@ class DocInfoTable extends Component {
 
       return(
       <div>
-     <Table>
-        <TableHeader>
-          <TableRow>
-            <TableHeaderColumn>Doctor and Service Information</TableHeaderColumn>
-          </TableRow>
+     <MuiThemeProvider>
+       <Table>
+          <TableHeader>
+            <TableRow>
+              <TableHeaderColumn>Doctor and Service Information</TableHeaderColumn>
+            </TableRow>
 
-          <TableRow>
-            <TableHeaderColumn>First Name</TableHeaderColumn>
-            <TableHeaderColumn>Last Name</TableHeaderColumn>
-            <TableHeaderColumn>Specialty</TableHeaderColumn>
-            <TableHeaderColumn>Accepted Insurances</TableHeaderColumn>
-            <TableHeaderColumn>Affiliations</TableHeaderColumn>
-            <TableHeaderColumn>Affiliations</TableHeaderColumn>
-            <TableHeaderColumn>Board Certifications</TableHeaderColumn>
-            <TableHeaderColumn>Physician Services ID</TableHeaderColumn>
-          </TableRow>
-        </TableHeader>
+            <TableRow>
+              <TableHeaderColumn>First Name</TableHeaderColumn>
+              <TableHeaderColumn>Last Name</TableHeaderColumn>
+              <TableHeaderColumn>Specialty</TableHeaderColumn>
+              <TableHeaderColumn>Accepted Insurances</TableHeaderColumn>
+              <TableHeaderColumn>Affiliations</TableHeaderColumn>
+              <TableHeaderColumn>Affiliations</TableHeaderColumn>
+              <TableHeaderColumn>Board Certifications</TableHeaderColumn>
+              <TableHeaderColumn>Physician Services ID</TableHeaderColumn>
+            </TableRow>
+          </TableHeader>
 
-        <TableBody>
-          <TableRow>
-            <TableRowColumn>${this.props.doc_fname}</TableRowColumn>
-            <TableRowColumn> ${this.props.doc_lname}</TableRowColumn>
-            <TableRowColumn> ${this.props.specialty}</TableRowColumn>
-            <TableRowColumn> ${this.props.affiliations}</TableRowColumn>
-            <TableRowColumn> ${this.props.this.board_certs}</TableRowColumn>
-            <TableRowColumn> ${this.props.this.docservices_id}</TableRowColumn>
-          </TableRow>
-        </TableBody>
-      </Table>
+          <TableBody>
+            <TableRow>
+              <TableRowColumn>${this.props.doc_fname}</TableRowColumn>
+              <TableRowColumn> ${this.props.doc_lname}</TableRowColumn>
+              <TableRowColumn> ${this.props.specialty}</TableRowColumn>
+              <TableRowColumn> ${this.props.affiliations}</TableRowColumn>
+              <TableRowColumn> ${this.props.board_certs}</TableRowColumn>
+              <TableRowColumn> ${this.props.docservices_id}</TableRowColumn>
+            </TableRow>
+          </TableBody>
+        </Table>
+      </MuiThemeProvider>
     </div>
     )
 

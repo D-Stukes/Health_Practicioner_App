@@ -2,8 +2,8 @@ const express = require('express');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-const testimonialRoute = require('./routes/testimonial_routes');
-// const docinfoRoute = require('./routes/docinfoRoute');
+const testimonial_routes = require('./routes/testimonial_routes');
+const docinfo_route = require('./routes/docinfoRoute');
 
 const app = express();
 
@@ -18,11 +18,9 @@ if (process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'));
     }
 
-// app.get('/', docinfoRoute);
-app.use('/testimonials', testimonialRoute);
-// app.use('/docinfoRoute/', docinfoRoute);
 
-// app.get('/docinfo', docinfoRoute);
+app.use('/', testimonial_routes);
+app.use('/docinfo', docinfo_route);
 
 
 app.listen(PORT, () => console.log(`Listening on port ${PORT}`));

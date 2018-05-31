@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+import {Route, Link } from 'react-router-dom';
 import Testimonials from './components/Testimonials'
 import TestimonialForm from './components/TestimonialForm.jsx';
 import DocInfoTable from './components/DocInfoTable.jsx';
+import Nav from './components/Nav.jsx'
 
 
 class App extends Component {
@@ -13,7 +14,7 @@ super(props);
 this.state = {
   patient_fname: '',
   patient_lname:'',
-  testimonial:'',
+  testimonials:[],
   service_date:'',
   doc_fname: '',
   doc_lname:'',
@@ -27,12 +28,13 @@ this.state = {
 fetchTestimonials(){
     fetch('/testimonials')
       .then(resp => {
-        // if (!resp.ok) throw new Error(resp.statusMessage);
+        if (!resp.ok) throw new Error(resp.statusMessage);
         return resp.json();
+        console.log(resp.json);
       })
       .then(resBody => {
         this.setState({
-          testimonial: resBody.data
+          testimonials: resBody.data
         })
       });
   }
@@ -41,40 +43,20 @@ fetchTestimonials(){
     this.fetchTestimonials();
   }
 
-
-
-// fetchDocinfo () {
-//     fetch('/docinfo')
-//       .then(resp => {
-//         if (!resp.ok) throw new Error(resp.statusMessage);
-//         return resp.json();
-//       })
-//       .then(resBody => {
-//         this.setState({
-//           docinfo: resBody.data
-//         })
-//       });
-//   }
-
-  // componentDidMount() {
-  //   this.fetchDocinfo();
-  // }
-
-
   render() {
     return (
-      <Router>
+      <Route>
       <div className="App">
         <header className="App-header">
+        <Nav />
           <img src={logo} className="App-logo" alt="logo" />
           <h1 className="App-title">Welcome to Your Health Practitioner's App</h1>
         </header>
-
           <Route exact path='/testimonials' render={() => (<Testimonials/>)}/>
           <Route exact path='/testimonials/form' render={() =>(<TestimonialForm onSubmit={this.handleSubmit}/>)}/>
           <Route exact path='/docinfo'render={() => (<DocInfoTable/>)}/>
       </div>
-    </Router>
+    </Route>
     )
   }
 }
