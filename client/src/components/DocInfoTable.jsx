@@ -3,60 +3,89 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {Table, TableBody,
 TableHeader, TableHeaderColumn,
 TableRow, TableRowColumn} from 'material-ui/Table'
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+// import getMuiTheme from 'material-ui/styles/getMuiTheme';
 
 class DocInfoTable extends Component {
   constructor(props) {
   super(props);
-
-    this.state ={
-      doc_fname: '',
-      doc_lname:'',
-      specialty:'',
-      insurance:'',
-      affiliations: '',
-      board_certs: ''
+this.state ={
+      docinfo:{},
+      docinfoLoaded: false
     }
+     this.fetchDocinfo = this.fetchDocinfo.bind(this);
+     this.renderDocinfo= this.renderDocinfo.bind(this);
+  }
 
-}
+  fetchDocinfo() {
+    fetch('testimonials/docinfo')
+    .then((resp) => {
+      console.log('doctest',resp);
+      if(!resp.ok) throw new Error(resp.statusMessage);
+      return resp.json();
+    })
+    .then((respBody) => {
+      this.setState({
+        docinfo: respBody.data,
+        docinfoLoaded: true
+      })
+console.log('docinfo',this.state)
+    })
+  }
+
+
+  componentDidMount() {
+    console.log('test this docinfo componentdidmount');
+    this.fetchDocinfo();
+  }
+    renderDocinfo() {
+    if(this.state.docinfoLoaded) {
+      return (this.state.docinfo.map((docinfotext) => {
+        return (
+         <div>
+          <MuiThemeProvider>
+              <Table>
+                <TableHeader>
+                  <TableRow>
+                    <TableHeaderColumn>Physician Information and Medical Services</TableHeaderColumn>
+                  </TableRow>
+
+                  <TableRow>
+                      <TableHeaderColumn>First Name</TableHeaderColumn>
+                      <TableHeaderColumn>Last Name</TableHeaderColumn>
+                      <TableHeaderColumn>Specialty</TableHeaderColumn>
+                      <TableHeaderColumn>Affiliations</TableHeaderColumn>
+                      <TableHeaderColumn>Board Certifications</TableHeaderColumn>
+
+                  </TableRow>
+              </TableHeader>
+
+              <TableBody>
+                <TableRow>
+                  <TableRowColumn>{docinfotext.doc_fname}</TableRowColumn>
+                  <TableRowColumn>{docinfotext.doc_lname}</TableRowColumn>
+                  <TableRowColumn>{docinfotext.specialty}</TableRowColumn>
+                  <TableRowColumn>{docinfotext.affiliations}</TableRowColumn>
+                  <TableRowColumn>{docinfotext.board_certs}</TableRowColumn>
+                </TableRow>
+              </TableBody>
+             </Table>
+            </MuiThemeProvider>
+            </div>
+        )
+      }))
+
+      } else {
+      return (<h2>* Loading * </h2>)
+    }
+  }
 
     render(){
-
-      return(
-      <div>
-     <MuiThemeProvider>
-       <Table>
-          <TableHeader>
-            <TableRow>
-              <TableHeaderColumn>Doctor and Service Information</TableHeaderColumn>
-            </TableRow>
-
-            <TableRow>
-              <TableHeaderColumn>First Name</TableHeaderColumn>
-              <TableHeaderColumn>Last Name</TableHeaderColumn>
-              <TableHeaderColumn>Specialty</TableHeaderColumn>
-              <TableHeaderColumn>Accepted Insurances</TableHeaderColumn>
-              <TableHeaderColumn>Affiliations</TableHeaderColumn>
-              <TableHeaderColumn>Affiliations</TableHeaderColumn>
-              <TableHeaderColumn>Board Certifications</TableHeaderColumn>
-              <TableHeaderColumn>Physician Services ID</TableHeaderColumn>
-            </TableRow>
-          </TableHeader>
-
-          <TableBody>
-            <TableRow>
-              <TableRowColumn>${this.props.doc_fname}</TableRowColumn>
-              <TableRowColumn> ${this.props.doc_lname}</TableRowColumn>
-              <TableRowColumn> ${this.props.specialty}</TableRowColumn>
-              <TableRowColumn> ${this.props.affiliations}</TableRowColumn>
-              <TableRowColumn> ${this.props.board_certs}</TableRowColumn>
-              <TableRowColumn> ${this.props.docservices_id}</TableRowColumn>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </MuiThemeProvider>
-    </div>
-    )
+      return (
+        <div className ="docservices-table">
+          <h1 className ="title">Physician Information and Medical Services</h1>
+            { this.renderDocinfo() }
+        </div>
+      )
 
   }
 }

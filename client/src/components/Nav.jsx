@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import Home from '../components/Home';
 
 class Nav extends Component {
   render() {
@@ -8,7 +9,8 @@ class Nav extends Component {
         <nav className= "Navbar">
             <div className= "NavbarLink"><Link to="/">Home</Link></div>
             <div className= "NavbarLink"><Link to="/testimonials">Testimonials</Link></div>
-            <div className= "NavbarLink"><Link to="/docinfo/">Physician Information and Medical Services</Link></div>
+            <div className= "NavbarLink"><Link to="/testimonials/form">TestimonialForm</Link></div>
+            <div className= "NavbarLink"><Link to="/testimonials/docinfo">Physician Information and Medical Services</Link></div>
         </nav>
       </div>
     );

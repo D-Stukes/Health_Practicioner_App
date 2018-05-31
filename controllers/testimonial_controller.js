@@ -1,7 +1,6 @@
 const testimonialsModel = require('../models/testimonial_model');
 
 function getAllTestimonials(req, res, next) {
-  console.log('req, req.params.id',req.params.id);
   testimonialsModel.getAllTestimonials()
     .then(data => {
       res.locals.testimonials = data;
@@ -33,9 +32,7 @@ function updateTestimonial(req, res, next) {
   })
 }
 function deleteTestimonial(req, res, next) {
-  req.body.id = res.locals.testimonials.id;
-  console.log(req.body)
-  testimonialsModel.deleteTestimonial(req.body)
+  testimonialsModel.destroyTestimonial(req.params.id)
   .then(data => {
     console.log('deleted data: ', data)
     next()

@@ -8,7 +8,7 @@ class Testimonials extends Component {
     super(props);
 
     this.state ={
-      testimonials:[],
+      testimonials:{},
       testimonialsLoaded: false
     }
      this.fetchTestimonials = this.fetchTestimonials.bind(this);
@@ -17,8 +17,9 @@ class Testimonials extends Component {
   }
 
   fetchTestimonials() {
-    fetch('/testimonials/')
+    fetch('/testimonials')
     .then((resp) => {
+      console.log('test',resp);
       if(!resp.ok) throw new Error(resp.statusMessage);
       return resp.json();
     })
@@ -27,14 +28,21 @@ class Testimonials extends Component {
         testimonials: respBody.data,
         testimonialsLoaded: true
       })
+console.log(this.state)
     })
   }
 
+
+  componentDidMount() {
+    console.log('test this componentdidmount');
+    this.fetchTestimonials();
+  }
     renderTestimonials() {
     if(this.state.testimonialsLoaded) {
-      return (this.state.testimonials.map((testimonial) => {
+      return (this.state.testimonials.map((testimony) => {
         return (
          <div>
+          <MuiThemeProvider>
               <Table>
                 <TableHeader>
                   <TableRow>
@@ -46,19 +54,25 @@ class Testimonials extends Component {
                       <TableHeaderColumn>Last Name</TableHeaderColumn>
                       <TableHeaderColumn>Testimonial</TableHeaderColumn>
                       <TableHeaderColumn>Service Date</TableHeaderColumn>
-                      <TableHeaderColumn>Physician</TableHeaderColumn>
+                      <TableHeaderColumn>Physician First Name</TableHeaderColumn>
+                      <TableHeaderColumn>Physician Last Name</TableHeaderColumn>
+
                   </TableRow>
               </TableHeader>
 
               <TableBody>
                 <TableRow>
-                  <TableRowColumn>${this.props.testimonials.patient_fname}</TableRowColumn>
-                  <TableRowColumn> ${this.props.testimonials.patient_lname}</TableRowColumn>
-                  <TableRowColumn> ${this.props.testimonials.testimonial}</TableRowColumn>
-                  <TableRowColumn> ${this.props.testimonials.service_date}</TableRowColumn>
+                  <TableRowColumn>{testimony.patient_fname}</TableRowColumn>
+                  <TableRowColumn>{testimony.patient_lname}</TableRowColumn>
+                  <TableRowColumn>{testimony.testimonial}</TableRowColumn>
+                  <TableRowColumn>{testimony.service_date}</TableRowColumn>
+                  <TableRowColumn>{testimony.doc_fname}</TableRowColumn>
+                  <TableRowColumn>{testimony.doc_lname}</TableRowColumn>
+
                 </TableRow>
               </TableBody>
-            </Table>
+             </Table>
+            </MuiThemeProvider>
             </div>
         )
       }))
@@ -70,8 +84,8 @@ class Testimonials extends Component {
 
   render() {
       return (
-        <div class="testimonial-table">
-          <h1 class="title">Testimonials</h1>
+        <div className ="testimonial-table">
+          <h1 className ="title">Testimonials</h1>
             { this.renderTestimonials() }
         </div>
       )

@@ -1,7 +1,8 @@
 const testimonialRoute = require('express').Router();
-
 const testimonial_controller = require('../controllers/testimonial_controller');
 const response_controller = require('../controllers/response_controller');
+const docinfo_controller = require('../controllers/docinfo_controller');
+
 
 testimonialRoute.route('/testimonials')
   .get(

@@ -7,6 +7,7 @@ function getAllTestimonials() {
         testimonials.id AS testimonial_id,
         testimonials.patient_fname,
         testimonials.patient_lname,
+        testimonials.testimonial,
         testimonials.service_date,
         doc_services.id AS docs_services_id,
         doc_services.doc_fname,
@@ -63,7 +64,7 @@ function updateTestimonial(testimonial) {
 
 
 
-function destroyTestimonial(testimonial) {
+function destroyTestimonial(id) {
   return db.none
   (`DELETE FROM testimonials
     WHERE id = $1`,id)
