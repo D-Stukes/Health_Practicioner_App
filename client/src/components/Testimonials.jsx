@@ -13,13 +13,14 @@ class Testimonials extends Component {
     }
      this.fetchTestimonials = this.fetchTestimonials.bind(this);
      this.renderTestimonials= this.renderTestimonials.bind(this);
+     this.handleDelete= this.handleDelete.bind(this);
 
   }
 
   fetchTestimonials() {
     fetch('/testimonials')
     .then((resp) => {
-      console.log('test',resp);
+      // console.log('test',resp);
       if(!resp.ok) throw new Error(resp.statusMessage);
       return resp.json();
     })
@@ -28,10 +29,30 @@ class Testimonials extends Component {
         testimonials: respBody.data,
         testimonialsLoaded: true
       })
-console.log(this.state)
+    // console.log(this.state)
     })
   }
 
+ deleteTestimonial(id) {
+    fetch(`/testimonials/${id}`, {
+      method: 'DELETE'
+    })
+      .then(resp => {
+        if (!resp.ok) throw new Error(resp.statusMessage);
+        return resp.json();
+      })
+      .then(respBody => {
+        this.setState((prevState, props) => {
+          return {
+            quotes: prevState.quotes.filter(quote => quote.id !== id)
+          }
+        })
+      })
+  }
+
+  handleDelete(id) {
+    this.deleteTestimonial(id);
+  }
 
   componentDidMount() {
     console.log('test this componentdidmount');
@@ -77,6 +98,7 @@ console.log(this.state)
         )
       }))
 
+
       } else {
       return (<h2>* Loading * </h2>)
     }
@@ -94,34 +116,7 @@ console.log(this.state)
 
 export default Testimonials
 
+// Intended for table to provide link to EditTestimonials component
+// <TableRowColumn><button type='submit'>{'EditTestimonials'} Edit</button></TableRowColumn>
 
 
-//previously in render statement
-    // return(
-    //   <div>
-    //   <Table>
-    //     <TableHeader>
-    //       <TableRow>
-    //         <TableHeaderColumn>Testimonials from Satisfied Clients</TableHeaderColumn>
-    //       </TableRow>
-
-    //       <TableRow>
-    //           <TableHeaderColumn>First Name</TableHeaderColumn>
-    //           <TableHeaderColumn>Last Name</TableHeaderColumn>
-    //           <TableHeaderColumn>Testimonial</TableHeaderColumn>
-    //           <TableHeaderColumn>Service Date</TableHeaderColumn>
-    //           <TableHeaderColumn>Physician</TableHeaderColumn>
-    //       </TableRow>
-    //   </TableHeader>
-
-    //   <TableBody>
-    //     <TableRow>
-    //       <TableRowColumn>${this.props.testimonials.patient_fname}</TableRowColumn>
-    //       <TableRowColumn> ${this.props.testimonials.patient_lname}</TableRowColumn>
-    //       <TableRowColumn> ${this.props.testimonials.testimonial}</TableRowColumn>
-    //       <TableRowColumn> ${this.props.testimonials.service_date}</TableRowColumn>
-    //     </TableRow>
-    //   </TableBody>
-    // </Table>
-    // </div>
-    // )

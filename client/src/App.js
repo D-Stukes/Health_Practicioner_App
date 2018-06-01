@@ -16,7 +16,6 @@ class App extends Component {
         testimonials: {}
       }
   }
-
   fetchTestimonials(){
       fetch('/testimonials')
         .then(resp => {
@@ -34,6 +33,7 @@ class App extends Component {
   componentDidMount() {
     this.fetchTestimonials();
   }
+
 
   render() {
     return (

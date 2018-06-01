@@ -17,7 +17,7 @@ this.state ={
   }
 
   fetchDocinfo() {
-    fetch('testimonials/docinfo')
+    fetch('/docinfo')
     .then((resp) => {
       console.log('doctest',resp);
       if(!resp.ok) throw new Error(resp.statusMessage);
@@ -41,7 +41,7 @@ console.log('docinfo',this.state)
     if(this.state.docinfoLoaded) {
       return (this.state.docinfo.map((docinfotext) => {
         return (
-         <div>
+         <div key= {docinfotext.id}>
           <MuiThemeProvider>
               <Table>
                 <TableHeader>
