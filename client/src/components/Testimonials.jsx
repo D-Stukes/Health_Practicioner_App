@@ -1,7 +1,8 @@
 import React, {Component} from 'react'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
-
+import { Link } from 'react-router-dom';
+import EditTestimonial from './EditTestimonial'
 
 class Testimonials extends Component {
   constructor(props) {
@@ -71,6 +72,7 @@ class Testimonials extends Component {
                   </TableRow>
 
                   <TableRow>
+                      <Link to='/testimonials/edit'>Edit</Link>
                       <TableHeaderColumn>First Name</TableHeaderColumn>
                       <TableHeaderColumn>Last Name</TableHeaderColumn>
                       <TableHeaderColumn>Testimonial</TableHeaderColumn>
