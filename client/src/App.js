@@ -43,7 +43,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <Nav />
-          <h1 className="App-title">Welcome to Your Health Practitioner's App</h1>
+          {/*<h1 className="App-title">Welcome to Your Health Practitioner's App</h1>*/}
         </header>
           <Route exact path='/testimonials' render={() => (<Testimonials testimonials= {this.state.testimonials}/>)}/>
           <Route exact path='/testimonials/form' render={() =>(<TestimonialForm onSubmit={this.handleSubmit}/>)}/>

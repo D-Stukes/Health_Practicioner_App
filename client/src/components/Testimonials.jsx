@@ -59,49 +59,26 @@ class Testimonials extends Component {
     console.log('test this componentdidmount');
     this.fetchTestimonials();
   }
-    renderTestimonials() {
-    if(this.state.testimonialsLoaded) {
-      return (this.state.testimonials.map((testimony) => {
-        return (
-         <div>
-          <MuiThemeProvider>
-              <Table>
-                <TableHeader>
-                  <TableRow>
-                    <TableHeaderColumn>Testimonials from Satisfied Clients</TableHeaderColumn>
-                  </TableRow>
-
-                  <TableRow>
-                      <Link to='/testimonials/edit'>Edit</Link>
-                      <TableHeaderColumn>First Name</TableHeaderColumn>
-                      <TableHeaderColumn>Last Name</TableHeaderColumn>
-                      <TableHeaderColumn>Testimonial</TableHeaderColumn>
-                      <TableHeaderColumn>Service Date</TableHeaderColumn>
-                      <TableHeaderColumn>Physician First Name</TableHeaderColumn>
-                      <TableHeaderColumn>Physician Last Name</TableHeaderColumn>
-
-                  </TableRow>
-              </TableHeader>
-
-              <TableBody>
-                <TableRow>
-                  <TableRowColumn>{testimony.patient_fname}</TableRowColumn>
-                  <TableRowColumn>{testimony.patient_lname}</TableRowColumn>
-                  <TableRowColumn>{testimony.testimonial}</TableRowColumn>
-                  <TableRowColumn>{testimony.service_date}</TableRowColumn>
-                  <TableRowColumn>{testimony.doc_fname}</TableRowColumn>
-                  <TableRowColumn>{testimony.doc_lname}</TableRowColumn>
-
-                </TableRow>
-              </TableBody>
-             </Table>
-            </MuiThemeProvider>
-            </div>
-        )
-      }))
-
+  renderTestimonials() {
+  if(this.state.testimonialsLoaded) {
+    return (this.state.testimonials.map((testimony) => {
+      return (
+       <div>
+              <TableRow>
+                <TableRowColumn className="TRow"><Link to='/testimonials/edit'>Edit</Link></TableRowColumn>
+                <TableRowColumn className="TRow">{testimony.patient_fname}</TableRowColumn>
+                <TableRowColumn className="TRow">{testimony.patient_lname}</TableRowColumn>
+                <TableRowColumn className="TRow">{testimony.testimonial}</TableRowColumn>
+                <TableRowColumn className="TRow">{testimony.service_date}</TableRowColumn>
+                <TableRowColumn className="TRow">{testimony.doc_fname}</TableRowColumn>
+                <TableRowColumn className="TRow">{testimony.doc_lname}</TableRowColumn>
+              </TableRow>
+          </div>
+      )
+    }))
 
       } else {
+
       return (<h2>* Loading * </h2>)
     }
   }
@@ -110,7 +87,26 @@ class Testimonials extends Component {
       return (
         <div className ="testimonial-table">
           <h1 className ="title">Testimonials</h1>
-            { this.renderTestimonials() }
+          <MuiThemeProvider>
+            <Table>
+              <TableHeader>
+                <TableHeaderColumn className="THeader">Positive Reviews from Satisfied Clients</TableHeaderColumn>
+                <TableRow>
+                   <TableHeaderColumn>Edit Testimony</TableHeaderColumn>
+                   <TableHeaderColumn>First Name</TableHeaderColumn>
+                   <TableHeaderColumn>Last Name</TableHeaderColumn>
+                   <TableHeaderColumn>Testimonial</TableHeaderColumn>
+                   <TableHeaderColumn>Service Date</TableHeaderColumn>
+                   <TableHeaderColumn>Physician First Name</TableHeaderColumn>
+                   <TableHeaderColumn>Physician Last Name</TableHeaderColumn>
+                </TableRow>
+              </TableHeader>
+
+              <TableBody>
+                  { this.renderTestimonials() }
+              </TableBody>
+            </Table>
+          </MuiThemeProvider>
         </div>
       )
     }
