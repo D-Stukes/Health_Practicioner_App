@@ -1,6 +1,14 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 
+// const formPic = {
+//   backgroundImage: 'url("../assets/Project4Bkg-main.png")',
+//   backgroundRepeat: 'no-repeat',
+//   backgroundSize: 'cover',
+//   backgroundPosition: 'center',
+// }
+
+
 class TestimonialForm extends Component {
   constructor(props) {
     super(props);
@@ -55,6 +63,8 @@ class TestimonialForm extends Component {
   componentDidMount() {
     console.log('test this componentdidmount');
     this.fetchDocServices();
+    {/*document.body.style.background= 'aqua';*/}
+    // document.body.style= {formPic};
   }
 
   createTestimonial(testimony) {
@@ -84,21 +94,12 @@ class TestimonialForm extends Component {
   render(){
     return(
 
-      <div>
+      <div className="addForm">
 
       <form onSubmit={this.handleSubmit}>
-      <h1>Add or Edit a Testimonial</h1>
-      <label htmlFor="patient_fname"> Patient First Name: </label>
-      <input type="text" value={this.state.patient_fname} name="patient_fname" onChange={this.handleChange}></input>  <br/>
-
-      <label htmlFor="patient_lname"> Patient Last Name: </label>
-      <input type="text" value={this.state.patient_lname} name="patient_lname" onChange={this.handleChange}></input>  <br/>
-
-      <label htmlFor="testimonial"> Testimonial: </label>
-      <input type="text area" value={this.state.testimonial} name="testimonial" onChange={this.handleChange}></input>  <br/>
-
-      <label htmlFor="service_date"> Service Date</label>
-      <input type="date" value={this.state.service_date} name="service_date" onChange={this.handleChange}></input>  <br/>
+      <h1>Add a Testimonial</h1> <br/>
+      <p>Share your positive experience with Doctor Nora!</p><br/>
+      <h5>Select the specialty service you received, enter your information and enter your review.</h5><br/><br/>
 
       <label htmlFor="doc_id"> Select Service/ Name of Physician: </label>
       <select value = {this.state.doc_id}
@@ -107,7 +108,20 @@ class TestimonialForm extends Component {
         {this.state.specialty.map(specialty =>(
               <option value = {specialty.id}> {specialty.specialty} - {specialty.doc_fname} {specialty.doc_lname}  </option>
         ))}
-      </select>  <br/>
+      </select>  <br/><br/>
+
+      <label htmlFor="patient_fname"> Patient First Name: </label>
+      <input type="text" value={this.state.patient_fname} name="patient_fname" onChange={this.handleChange}></input>  <br/><br/>
+
+      <label htmlFor="patient_lname"> Patient Last Name: </label>
+      <input type="text" value={this.state.patient_lname} name="patient_lname" onChange={this.handleChange}></input>  <br/><br/>
+
+      <label htmlFor="testimonial"> Testimonial: </label>
+      <input type="text area" value={this.state.testimonial} name="testimonial" onChange={this.handleChange}></input>  <br/><br/>
+
+      <label htmlFor="service_date"> Service Date</label>
+      <input type="date" value={this.state.service_date} name="service_date" onChange={this.handleChange}></input>  <br/><br/>
+
 
       <button value="Submit">Submit</button>
       </form>

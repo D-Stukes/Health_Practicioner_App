@@ -3,11 +3,14 @@ import React, { Component } from 'react';
 
 
 class Home extends Component {
+
+componentDidMount(){
+    // document.body.style= {homePic};
+  }
+
   render() {
-
-
     return (
-      <div>
+      <div className="home">
 
         <h1>Welcome <br />to <br /> Your Health Practitioner's Services Site</h1>
 

@@ -3,19 +3,20 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table'
 import { Link } from 'react-router-dom';
 import EditTestimonial from './EditTestimonial'
+import Testimony from './testimony';
 
 class Testimonials extends Component {
   constructor(props) {
     super(props);
 
     this.state ={
-      testimonials:{},
+      testimonials:[],
       testimonialsLoaded: false
     }
      this.fetchTestimonials = this.fetchTestimonials.bind(this);
      this.renderTestimonials= this.renderTestimonials.bind(this);
+     // this.deleteTestimonial= this.deleteTestimonial.bind(this);
      this.handleDelete= this.handleDelete.bind(this);
-
   }
 
   fetchTestimonials() {
@@ -26,6 +27,7 @@ class Testimonials extends Component {
       return resp.json();
     })
     .then((respBody) => {
+      console.log('respbody print',respBody);
       this.setState({
         testimonials: respBody.data,
         testimonialsLoaded: true
@@ -35,8 +37,11 @@ class Testimonials extends Component {
   }
 
  deleteTestimonial(id) {
+  console.log(id);
+  console.log('this is the delete fetch call');
     fetch(`/testimonials/${id}`, {
       method: 'DELETE'
+      // body: JSON.stringify(id),
     })
       .then(resp => {
         if (!resp.ok) throw new Error(resp.statusMessage);
@@ -45,35 +50,32 @@ class Testimonials extends Component {
       .then(respBody => {
         this.setState((prevState, props) => {
           return {
-            quotes: prevState.quotes.filter(quote => quote.id !== id)
+            testimonials: prevState.testimonials.filter(testimonials => testimonials.testimonial_id !==id)
           }
+          console.log("test state", this.state);
         })
       })
   }
+
+    handleSubmit(e) {
+    this.createTestimonial(this.state.testimony);
+  }
+
 
   handleDelete(id) {
     this.deleteTestimonial(id);
   }
 
   componentDidMount() {
-    console.log('test this componentdidmount');
+    // console.log('test this componentdidmount');
     this.fetchTestimonials();
   }
   renderTestimonials() {
   if(this.state.testimonialsLoaded) {
+    // {console.log('map statement for table',this.state.testimonials)}
     return (this.state.testimonials.map((testimony) => {
       return (
-       <div>
-              <TableRow>
-                <TableRowColumn className="TRow"><Link to='/testimonials/edit'>Edit</Link></TableRowColumn>
-                <TableRowColumn className="TRow">{testimony.patient_fname}</TableRowColumn>
-                <TableRowColumn className="TRow">{testimony.patient_lname}</TableRowColumn>
-                <TableRowColumn className="TRow">{testimony.testimonial}</TableRowColumn>
-                <TableRowColumn className="TRow">{testimony.service_date}</TableRowColumn>
-                <TableRowColumn className="TRow">{testimony.doc_fname}</TableRowColumn>
-                <TableRowColumn className="TRow">{testimony.doc_lname}</TableRowColumn>
-              </TableRow>
-          </div>
+       <Testimony key={testimony.testimonial_id} onDelete={this.handleDelete} testimony={testimony} />
       )
     }))
 
@@ -85,23 +87,23 @@ class Testimonials extends Component {
 
   render() {
       return (
-        <div className ="testimonial-table">
+        <div className ="testimonialTable">
           <h1 className ="title">Testimonials</h1>
           <MuiThemeProvider>
-            <Table>
-              <TableHeader>
+            <Table displayRowCheckbox={false}>
+              <TableHeader displaySelectAll={false}  adjustForCheckbox={false}>
                 <TableHeaderColumn className="THeader">Positive Reviews from Satisfied Clients</TableHeaderColumn>
                 <TableRow>
-                   <TableHeaderColumn>Edit Testimony</TableHeaderColumn>
-                   <TableHeaderColumn>First Name</TableHeaderColumn>
-                   <TableHeaderColumn>Last Name</TableHeaderColumn>
-                   <TableHeaderColumn>Testimonial</TableHeaderColumn>
-                   <TableHeaderColumn>Service Date</TableHeaderColumn>
-                   <TableHeaderColumn>Physician First Name</TableHeaderColumn>
-                   <TableHeaderColumn>Physician Last Name</TableHeaderColumn>
+                  <TableHeaderColumn>Edit Testimony</TableHeaderColumn>
+                  <TableHeaderColumn>Delete Testimony</TableHeaderColumn>
+                  <TableHeaderColumn>First Name</TableHeaderColumn>
+                  <TableHeaderColumn>Last Name</TableHeaderColumn>
+                  <TableHeaderColumn>Testimonial</TableHeaderColumn>
+                  <TableHeaderColumn>Service Date</TableHeaderColumn>
+                  <TableHeaderColumn>Physician First Name</TableHeaderColumn>
+                  <TableHeaderColumn>Physician Last Name</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
-
               <TableBody>
                   { this.renderTestimonials() }
               </TableBody>
@@ -114,7 +116,5 @@ class Testimonials extends Component {
 
 export default Testimonials
 
-// Intended for table to provide link to EditTestimonials component
-// <TableRowColumn><button type='submit'>{'EditTestimonials'} Edit</button></TableRowColumn>
 
 

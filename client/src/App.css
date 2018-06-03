@@ -26,3 +26,20 @@
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
 }
+
+
+.home{
+  background-image: url("./assets/Project4Bkg-main.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 800px;
+}
+
+.addForm, .editForm, .testimonialTable, .docservicesTable{
+  background-image: url("./assets/Project4BlankBlueBkgrd.png");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  height: 800px;
+}

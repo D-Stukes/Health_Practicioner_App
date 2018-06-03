@@ -23,7 +23,7 @@ function addNewTestimonial(req, res, next) {
 }
 
 function updateTestimonial(req, res, next) {
-  req.body.id = res.locals.testimonials.id;
+  req.body.id = req.params.id;
   testimonialsModel.updateTestimonial(req.body)
   .then((data) => {
     console.log('this is the updated testimony data', data)

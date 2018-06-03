@@ -10,7 +10,7 @@ class Nav extends Component {
             <div className= "NavbarLink"><Link to="/">Home</Link></div>
             <div className= "NavbarLink"><Link to="/testimonials">Testimonials</Link></div>
             <div className= "NavbarLink"><Link to="/testimonials/form">TestimonialForm</Link></div>
-            <div className= "NavbarLink 4"><Link to="/testimonials/docinfo">Physician Information and Medical Services</Link></div>
+            <div className= "NavbarLink longNav"><Link to="/testimonials/docinfo">Physician Info & Medical Services</Link></div>
         </nav>
       </div>
     );

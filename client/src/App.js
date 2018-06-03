@@ -18,23 +18,23 @@ class App extends Component {
         testimonials: {}
       }
   }
-  fetchTestimonials(){
-      fetch('/testimonials')
-        .then(resp => {
-          console.log('from app',resp);
-          if (!resp.ok) throw new Error(resp.statusMessage);
-          return resp.json();
-        })
-        .then(resBody => {
-          this.setState({
-            testimonials: resBody.data
-          })
-        });
-    }
+  // fetchTestimonials(){
+  //     fetch('/testimonials')
+  //       .then(resp => {
+  //         console.log('from app',resp);
+  //         if (!resp.ok) throw new Error(resp.statusMessage);
+  //         return resp.json();
+  //       })
+  //       .then(resBody => {
+  //         this.setState({
+  //           testimonials: resBody.data
+  //         })
+  //       });
+  //   }
 
-  componentDidMount() {
-    this.fetchTestimonials();
-  }
+  // componentDidMount() {
+  //   this.fetchTestimonials();
+  // }
 
 
   render() {

@@ -81,7 +81,7 @@ console.log('docinfo',this.state)
 
     render(){
       return (
-        <div className ="docservices-table">
+        <div className ="docservicesTable">
           <h1 className ="title">Physician Information and Medical Services</h1>
             { this.renderDocinfo() }
         </div>

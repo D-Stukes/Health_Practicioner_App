@@ -77,10 +77,9 @@ export default class EditTestimonial extends Component {
 
   render() {
     return (
-      <div>
-        <h2>Edit Testimonial</h2> <br />
+      <div className="editForm">
+        <h1>Edit Testimonial</h1> <br />
         <form onSubmit={this.handleSubmit}>
-          <h1>Add or Edit a Testimonial</h1>
           <label htmlFor="patient_fname"> Patient First Name: </label>
           <input type="text" value={this.state.patient_fname} name="patient_fname" onChange={this.handleChange}></input>  <br/>
 

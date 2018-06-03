@@ -4,11 +4,16 @@ body {
   font-family: sans-serif;
 }
 
-body {
+/*body {
     background-color: aqua;
-    background-image: url('./assets/Project4Bkg-main.png');
+    background-image: url('./assets/Project4BlankBlueBkgrd.png');
     background-size: cover;
     background-repeat: no-repeat;
+}*/
+
+.TForm{
+background-color: silver;
+opacity: .5;
 }
 
 .Navbar{
@@ -25,7 +30,7 @@ body {
 }
 
 
-.Navbar a {
+.Navbar a{
     display: block;
     color: rgb(255, 255, 179);
 /*    text-align: center;
@@ -33,7 +38,7 @@ body {
     text-decoration: none;
 }
 
-.Navbar a:hover {
+.Navbar a:hover{
     background-color: rgb(68, 68, 34);
     color:  white;
 }
