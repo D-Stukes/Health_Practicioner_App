@@ -2,10 +2,12 @@ import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import Home from '../components/Home';
 
+//Global Navigation Bar  - with hover applied
+
 class Nav extends Component {
   render() {
     return (
-      <div>
+      <div className="AllNavs">
         <nav className= "Navbar">
             <div className= "NavbarLink"><Link to="/">Home</Link></div>
             <div className= "NavbarLink"><Link to="/testimonials">Testimonials</Link></div>

@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 
+//set initial state for values on Testimonial Form
+
 class TestimonialForm extends Component {
   constructor(props) {
     super(props);
@@ -14,6 +16,8 @@ class TestimonialForm extends Component {
       specialty:[],
       specialtyLoaded:false
     }
+
+//bind these functions to the state of the component so they will work
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,9 +35,13 @@ class TestimonialForm extends Component {
     });
   }
 
+  //call the createTestimonial function to add the entered values when the user clicks submit button
+
   handleSubmit(e) {
     this.createTestimonial(this.state.testimony);
   }
+
+ //fetch all of the information of the doc info services table from the database
 
   fetchDocServices() {
     fetch('/docinfo')
@@ -47,21 +55,20 @@ class TestimonialForm extends Component {
         specialty: respBody.data,
         specialtyLoaded: true
       })
-      // console.log(this.state)
     })
   }
+
+  //make the fetched database info available as soon as the component mounts
 
   componentDidMount() {
     console.log('test this componentdidmount');
     this.fetchDocServices();
-    {/*document.body.style.background= 'aqua';*/}
-    // document.body.style= {formPic};
   }
 
-  createTestimonial(testimony) {
-    console.log(testimony);
-        debugger;
 
+  //create the testimonial using a fetch call to connect to the back end create model
+
+  createTestimonial(testimony) {
     fetch('/testimonials', {
       method: 'POST',
       body: JSON.stringify(testimony),
@@ -81,6 +88,9 @@ class TestimonialForm extends Component {
       })
     })
   }
+
+
+  //display the blank form where a user can enter information and add a testimonial
 
   render(){
     return(

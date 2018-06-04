@@ -8,6 +8,8 @@ class Testimony extends Component {
   constructor(props) {
     super(props);
 
+  //set initial state
+
     this.state ={
       testimonials:{},
       testimonialsLoaded: false
@@ -16,17 +18,14 @@ class Testimony extends Component {
     this.handleDelete= this.handleDelete.bind(this);
   }
 
-
-  // handleEdit(e) {
-  //   e.preventDefault()
-  //   this.props.onEdit(this.props.testimony.testimonial_id);
-  // }
+  //delete only the row where the delete button was clicked
 
   handleDelete(e) {
     e.preventDefault()
     this.props.onDelete(this.props.testimony.testimonial_id);
   }
 
+  //display the table rows
   render() {
       return (
               <TableRow>
@@ -44,8 +43,5 @@ class Testimony extends Component {
 }
 
 export default Testimony
-// style={{
-//                       whiteSpace: "normal",
-//                       wordWrap: "break-word"
-//                     }}
+
 

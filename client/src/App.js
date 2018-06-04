@@ -18,24 +18,8 @@ class App extends Component {
         testimonials: {}
       }
   }
-  // fetchTestimonials(){
-  //     fetch('/testimonials')
-  //       .then(resp => {
-  //         console.log('from app',resp);
-  //         if (!resp.ok) throw new Error(resp.statusMessage);
-  //         return resp.json();
-  //       })
-  //       .then(resBody => {
-  //         this.setState({
-  //           testimonials: resBody.data
-  //         })
-  //       });
-  //   }
 
-  // componentDidMount() {
-  //   this.fetchTestimonials();
-  // }
-
+  //I decided to place fetch calls in the components.  I may later refactor this project to plact the fetch call here and better utilize the advantage of passing props from App. js
 
   render() {
     return (
@@ -43,7 +27,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">
         <Nav />
-          {/*<h1 className="App-title">Welcome to Your Health Practitioner's App</h1>*/}
+
         </header>
           <Route exact path='/testimonials' render={() => (<Testimonials testimonials= {this.state.testimonials}/>)}/>
           <Route exact path='/testimonials/form' render={() =>(<TestimonialForm onSubmit={this.handleSubmit}/>)}/>

@@ -4,9 +4,7 @@ import React, { Component } from 'react';
 
 class Home extends Component {
 
-componentDidMount(){
-    // document.body.style= {homePic};
-  }
+//Display a welcome page - background image added in App.css
 
   render() {
     return (

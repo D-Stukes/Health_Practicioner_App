@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+//set state for the testimonial table values
+
 export default class EditTestimonial extends Component {
    constructor(props) {
     super(props);
@@ -11,6 +13,8 @@ export default class EditTestimonial extends Component {
       service_date: '',
       doc_id: ''}
     }
+
+  // bind these functions so they will work
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -28,10 +32,14 @@ export default class EditTestimonial extends Component {
     });
   }
 
+  //setup handleSubmit to call the updateTestimonial function on only the id that matches user selection
+
   handleSubmit(e) {
     e.preventDefault()
     this.updateTestimonial(this.state.testimonials,this.props.match.params.id);
   }
+
+  //perform an update on the data set that was selected based on user input
 
   updateTestimonial(testimony,id) {
     fetch(`/testimonials/${id}`, {
@@ -48,21 +56,11 @@ export default class EditTestimonial extends Component {
       .then(resBody => {
         this.fetchTestimonials();
         this.props.history.push('/testimonials');
-        // this.setState((prevState, props) => {
-        //   debugger;
-        //   const { testimonials } = prevState;
-        //   const index = prevState.testimonials.findIndex(t => t.id === id);
-        //   return {
-        //     testimonials: [
-        //       testimonials.slice(0, index),
-        //       resBody.data,
-        //       testimonials.slice(index + 1)
-        //     ]
-        //   }
-        // })
       })
   }
 
+
+  //fetch the database information only for the data set that was selected
 
   fetchTestimonial() {
       fetch(`/testimonials/${this.props.match.params.id}`)
@@ -79,6 +77,9 @@ export default class EditTestimonial extends Component {
       // console.log(this.state)
       })
     }
+
+
+ //fetch the all of the database information for the testimonial table
 
  fetchTestimonials() {
     fetch('/testimonials')
@@ -97,10 +98,13 @@ export default class EditTestimonial extends Component {
     })
   }
 
+  //make the information for the selected dataset available as soon as the component mounts
   componentDidMount() {
     console.log('test this componentdidmount');
     this.fetchTestimonial();
   }
+
+  //display the information from the row where the user selected "Edit" in the Testimonials table
 
   render() {
     console.log('this prop test',this.props);
