@@ -90,8 +90,6 @@ class Testimonials extends Component {
         <div className="testimonialTable">
           <h1 className="title">Testimonials</h1>
           <h4 className="tableSubHdg">Positive Reviews from Satisfied Clients</h4>
-
-        {/* bannertext was intended to be animated but css animation for this is still a work-in-progess*/}
           <div className="banner-container"><h6 className="bannertext">"She is the best family doctor I have ever had."   "I would definitely recommend her."   "Everyone in this clinic is so attentative, patient and kind."   "All of the doctors and staff that work in this clinic are awesome."</h6></div>
 
         {/*display column headings */}
