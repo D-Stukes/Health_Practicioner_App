@@ -9,6 +9,17 @@ function getAllTestimonials(req, res, next) {
     })
     .catch(next)
 }
+
+function getOneTestimonial(req, res, next) {
+  testimonialsModel.getOneTestimonial(req.params.id)
+    .then(data => {
+      res.locals.testimonials = data;
+      next();
+    })
+    .catch(next)
+}
+
+
 function addNewTestimonial(req, res, next) {
   // req.body.id = res.locals.testimonials.id;
   console.log(req.body);
@@ -43,6 +54,7 @@ function deleteTestimonial(req, res, next) {
 
 module.exports = {
   getAllTestimonials,
+  getOneTestimonial,
   addNewTestimonial,
   updateTestimonial,
   deleteTestimonial

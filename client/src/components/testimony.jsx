@@ -12,50 +12,15 @@ class Testimony extends Component {
       testimonials:{},
       testimonialsLoaded: false
     }
-     // this.fetchTestimonials = this.fetchTestimonials.bind(this);
-     // this.renderTestimonials= this.renderTestimonials.bind(this);
-     // // this.deleteTestimonial= this.deleteTestimonial.bind(this);
-     this.handleDelete= this.handleDelete.bind(this);
+
+    this.handleDelete= this.handleDelete.bind(this);
   }
 
-  // fetchTestimonials() {
-  //   fetch('/testimonials')
-  //   .then((resp) => {
-  //     // console.log('test',resp);
-  //     if(!resp.ok) throw new Error(resp.statusMessage);
-  //     return resp.json();
-  //   })
-  //   .then((respBody) => {
-  //     this.setState({
-  //       testimonials: respBody.data,
-  //       testimonialsLoaded: true
-  //     })
-  //   // console.log(this.state)
-  //   })
+
+  // handleEdit(e) {
+  //   e.preventDefault()
+  //   this.props.onEdit(this.props.testimony.testimonial_id);
   // }
-
-// already in the Testimonials component
- // deleteTestimonial(id) {
- //  console.log(id);
- //  console.log('this is the delete fetch call');
- //    fetch(`/testimonials/${id}`, {
- //      method: 'DELETE'
- //      // body: JSON.stringify(id),
- //    })
- //      .then(resp => {
- //        if (!resp.ok) throw new Error(resp.statusMessage);
- //        return resp.json();
- //      })
- //      .then(respBody => {
- //        this.setState((prevState, props) => {
- //          return {
- //            testimonials: prevState.testimonials.filter(testimonials => testimonials.id !==id)
- //          }
- //          console.log("test state", this.state);
- //        })
- //      })
- //  }
-
 
   handleDelete(e) {
     e.preventDefault()
@@ -65,22 +30,22 @@ class Testimony extends Component {
   render() {
       return (
               <TableRow>
-                <TableRowColumn className="TRow"><Link to='/testimonials/edit'>Edit</Link></TableRowColumn>
-                <TableRowColumn className="TRow"><button onClick={this.handleDelete}>Delete</button></TableRowColumn>
-                <TableRowColumn className="TRow">{this.props.testimony.patient_fname}</TableRowColumn>
-                <TableRowColumn className="TRow">{this.props.testimony.patient_lname}</TableRowColumn>
-                <TableRowColumn className="TRow">{this.props.testimony.testimonial}</TableRowColumn>
-                <TableRowColumn className="TRow">{this.props.testimony.service_date}</TableRowColumn>
-                <TableRowColumn className="TRow">{this.props.testimony.doc_fname}</TableRowColumn>
-                <TableRowColumn className="TRow">{this.props.testimony.doc_lname}</TableRowColumn>
+               <TableRowColumn className="TRow" style={{width:6}}><Link to={`/testimonials/edit/${this.props.testimony.testimonial_id}`}>Edit</Link></TableRowColumn>
+                <TableRowColumn className="TRow" style={{width:6}}><button onClick={this.handleDelete}>Delete</button></TableRowColumn>
+                <TableRowColumn className="TRow" style={{width:10}}>{this.props.testimony.patient_fname}</TableRowColumn>
+                <TableRowColumn className="TRow" style={{width:10}}>{this.props.testimony.patient_lname}</TableRowColumn>
+                <TableRowColumn className="TRow" style={{width:225, whiteSpace:"normal", wordWrap: "break-word"}}>{this.props.testimony.testimonial}</TableRowColumn>
+                <TableRowColumn className="TRow" style={{width:25}}>{this.props.testimony.service_date}</TableRowColumn>
+                <TableRowColumn className="TRow" style={{width:25}}>{this.props.testimony.doc_fname}</TableRowColumn>
+                <TableRowColumn className="TRow" style={{width:25}}>{this.props.testimony.doc_lname}</TableRowColumn>
               </TableRow>
       )
     }
 }
 
 export default Testimony
-
-// Intended for table to provide link to EditTestimonials component
-// <TableRowColumn><button type='submit'>{'EditTestimonials'} Edit</button></TableRowColumn>
-   // fetch(`/testimonials/${id}
+// style={{
+//                       whiteSpace: "normal",
+//                       wordWrap: "break-word"
+//                     }}
 

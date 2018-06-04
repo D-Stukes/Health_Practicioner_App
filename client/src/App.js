@@ -48,7 +48,7 @@ class App extends Component {
           <Route exact path='/testimonials' render={() => (<Testimonials testimonials= {this.state.testimonials}/>)}/>
           <Route exact path='/testimonials/form' render={() =>(<TestimonialForm onSubmit={this.handleSubmit}/>)}/>
           <Route exact path='/testimonials/docinfo'render={() => (<DocInfoTable/>)}/>
-          <Route exact path='/testimonials/edit' render={() => (<EditTestimonial/>)}/>
+          <Route exact path='/testimonials/edit/:id' render={({match,history}) => (<EditTestimonial match={match} history={history}/>)}/>
           <Route exact path='/' render={() => (<Home/>)}/>
       </div>
     </Route>

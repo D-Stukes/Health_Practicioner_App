@@ -21,6 +21,11 @@ function getAllTestimonials() {
       ON testimonials.doc_id = doc_services.id`);
 }
 
+function getOneTestimonial(id) {
+    return db.one(`
+      SELECT * FROM testimonials
+      WHERE id = $1`, id,);
+}
 
 // test={ patient_fname:'Harry', patient_lname:'Shamoo', testimonial:'My legs do not swell so much anymore',service_date:'May 20 2018',doc_id: 1}
 
@@ -73,6 +78,7 @@ function destroyTestimonial(id) {
 
 module.exports = {
   getAllTestimonials,
+  getOneTestimonial,
   createTestimonial,
   updateTestimonial,
   destroyTestimonial

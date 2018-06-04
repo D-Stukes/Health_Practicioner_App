@@ -16,12 +16,19 @@ testimonialRoute.route('/testimonials')
     response_controller.sendErrorResponse
     )
 
-  testimonialRoute.route('/testimonials/:id')
+    testimonialRoute.route('/testimonials/:id')
+  .get(
+    testimonial_controller.getOneTestimonial,
+    response_controller.sendOkResponse,
+    response_controller.sendErrorResponse
+  )
   .put(
     testimonial_controller.updateTestimonial,
     response_controller.sendOkResponse,
     response_controller.sendErrorResponse
   )
+
+  testimonialRoute.route('/testimonials/:id')
   .delete(
     testimonial_controller.deleteTestimonial,
     response_controller.sendOkResponse,

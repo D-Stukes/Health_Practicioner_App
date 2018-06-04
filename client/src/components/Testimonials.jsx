@@ -87,21 +87,22 @@ class Testimonials extends Component {
 
   render() {
       return (
-        <div className ="testimonialTable">
-          <h1 className ="title">Testimonials</h1>
+        <div className="testimonialTable">
+          <h1 className="title">Testimonials</h1>
+          <h4 className="tableSubHdg">Positive Reviews from Satisfied Clients</h4>
+          <h6 className="bannertext">"She is the best family doctor I have ever had."   "I would definitely recommend her."   "Everyone in this clinic is so attentative, patient and kind."   "All of the doctors and staff that work in this clinic are awesome."</h6>
           <MuiThemeProvider>
             <Table displayRowCheckbox={false}>
               <TableHeader displaySelectAll={false}  adjustForCheckbox={false}>
-                <TableHeaderColumn className="THeader">Positive Reviews from Satisfied Clients</TableHeaderColumn>
                 <TableRow>
-                  <TableHeaderColumn>Edit Testimony</TableHeaderColumn>
-                  <TableHeaderColumn>Delete Testimony</TableHeaderColumn>
-                  <TableHeaderColumn>First Name</TableHeaderColumn>
-                  <TableHeaderColumn>Last Name</TableHeaderColumn>
-                  <TableHeaderColumn>Testimonial</TableHeaderColumn>
-                  <TableHeaderColumn>Service Date</TableHeaderColumn>
-                  <TableHeaderColumn>Physician First Name</TableHeaderColumn>
-                  <TableHeaderColumn>Physician Last Name</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:6}}>Edit Testimony</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:6}}>Delete Testimony</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:6}}>First Name</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:6}}>Last Name</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:225}}>Testimonial</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:25}}>Service Date</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:25}}>Physician First Name</TableHeaderColumn>
+                  <TableHeaderColumn style={{width:25}}>Physician Last Name</TableHeaderColumn>
                 </TableRow>
               </TableHeader>
               <TableBody>
@@ -116,5 +117,6 @@ class Testimonials extends Component {
 
 export default Testimonials
 
+     {/*<EditTestimonial key={testimony.testimonial_id} onEdit={this.handleEdit} testimony={testimony} /> */}
 
 

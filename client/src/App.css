@@ -43,3 +43,34 @@
   background-position: center;
   height: 800px;
 }
+
+.tableSubHdg{
+  text-align: center;
+  font-size: 25px;
+  font-style: italic;
+  animation:pulseIt 7s infinite;
+}
+
+@keyframes pulseIt{
+  0%{  color: #0000e6; }
+  25%{ color: #ffa31a; }
+  50%{ color: #cc00ff; }
+  70%{ color: #4d9900; }
+  100%{color: #ff0080; }
+}
+
+.bannertext{
+  font-size: 14px;
+  font-style: italic;
+  animation:slideIt 5s infinite;
+}
+
+
+@keyframes slideIt {
+  0%{left:0px; opacity:1;}
+  100%{left:1000px; opacity:1;}
+}
+
+
+
+

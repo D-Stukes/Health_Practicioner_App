@@ -1,14 +1,6 @@
 import React, { Component } from 'react';
 import {Redirect} from 'react-router-dom';
 
-// const formPic = {
-//   backgroundImage: 'url("../assets/Project4Bkg-main.png")',
-//   backgroundRepeat: 'no-repeat',
-//   backgroundSize: 'cover',
-//   backgroundPosition: 'center',
-// }
-
-
 class TestimonialForm extends Component {
   constructor(props) {
     super(props);
@@ -42,7 +34,6 @@ class TestimonialForm extends Component {
   handleSubmit(e) {
     this.createTestimonial(this.state.testimony);
   }
-
 
   fetchDocServices() {
     fetch('/docinfo')
